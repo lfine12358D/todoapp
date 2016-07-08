@@ -1,0 +1,36 @@
+﻿@model todoApp.Models.toDo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>toDo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.priorityType.PriorityType1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.priorityType.PriorityType1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.remindMeDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.remindMeDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.toDoDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.toDoDesc)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

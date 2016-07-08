@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ToDoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ToDoModelStoreContainer">
+          <EntitySet Name="priorityTypes" EntityType="ToDoModel.Store.priorityTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="toDos" EntityType="ToDoModel.Store.toDos" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ToDos_PriorityTypes" Association="ToDoModel.Store.FK_ToDos_PriorityTypes">
+            <End Role="priorityTypes" EntitySet="priorityTypes" />
+            <End Role="toDos" EntitySet="toDos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="priorityTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityType" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="toDos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="priorityTypeId" Type="int" Nullable="false" />
+          <Property Name="remindMeDate" Type="datetimeoffset" Nullable="false" />
+          <Property Name="toDoDesc" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ToDos_PriorityTypes">
+          <End Role="priorityTypes" Type="ToDoModel.Store.priorityTypes" Multiplicity="1" />
+          <End Role="toDos" Type="ToDoModel.Store.toDos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="priorityTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="toDos">
+              <PropertyRef Name="priorityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ToDoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ToDoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="priorityTypes" EntityType="ToDoModel.priorityType" />
+          <EntitySet Name="toDos" EntityType="ToDoModel.toDo" />
+          <AssociationSet Name="FK_ToDos_PriorityTypes" Association="ToDoModel.FK_ToDos_PriorityTypes">
+            <End Role="priorityTypes" EntitySet="priorityTypes" />
+            <End Role="toDos" EntitySet="toDos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="priorityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityType1" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="toDos" Relationship="ToDoModel.FK_ToDos_PriorityTypes" FromRole="priorityTypes" ToRole="toDos" />
+        </EntityType>
+        <EntityType Name="toDo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="priorityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="remindMeDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="toDoDesc" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="priorityType" Relationship="ToDoModel.FK_ToDos_PriorityTypes" FromRole="toDos" ToRole="priorityTypes" />
+        </EntityType>
+        <Association Name="FK_ToDos_PriorityTypes">
+          <End Role="priorityTypes" Type="ToDoModel.priorityType" Multiplicity="1" />
+          <End Role="toDos" Type="ToDoModel.toDo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="priorityTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="toDos">
+              <PropertyRef Name="priorityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ToDoModelStoreContainer" CdmEntityContainer="ToDoEntities">
+          <EntitySetMapping Name="priorityTypes">
+            <EntityTypeMapping TypeName="ToDoModel.priorityType">
+              <MappingFragment StoreEntitySet="priorityTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PriorityType1" ColumnName="PriorityType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="toDos">
+            <EntityTypeMapping TypeName="ToDoModel.toDo">
+              <MappingFragment StoreEntitySet="toDos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="priorityTypeId" ColumnName="priorityTypeId" />
+                <ScalarProperty Name="remindMeDate" ColumnName="remindMeDate" />
+                <ScalarProperty Name="toDoDesc" ColumnName="toDoDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

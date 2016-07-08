@@ -1,0 +1,40 @@
+﻿@model todoApp.Models.toDo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>toDo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.priorityType.PriorityType1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.priorityType.PriorityType1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.remindMeDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.remindMeDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.toDoDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.toDoDesc)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
