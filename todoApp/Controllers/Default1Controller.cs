@@ -95,7 +95,7 @@ namespace todoApp.Controllers
 
         //
         // GET: /Default1/Delete/5
-
+        [HttpGet]
         public ActionResult Delete(int id = 0)
         {
             toDo todo = db.toDos.Find(id);

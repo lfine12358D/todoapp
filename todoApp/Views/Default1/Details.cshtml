@@ -3,34 +3,25 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="content-wrapper">
+    <h1><span class="label label-info">My ToDo List - Detail</span></h1>
+    <p class="padding"></p>
 
-<h2>Details</h2>
+    <fieldset>
+        <legend></legend>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.priorityType.PriorityType1) : @Html.DisplayFor(model => model.priorityType.PriorityType1)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.remindMeDate) : @Html.DisplayFor(model => model.remindMeDate)
+        </div>
 
-<fieldset>
-    <legend>toDo</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.priorityType.PriorityType1)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.priorityType.PriorityType1)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.remindMeDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.remindMeDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.toDoDesc)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.toDoDesc)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.toDoDesc) :  @Html.DisplayFor(model => model.toDoDesc)
+        </div>
+    </fieldset>
+    <p class="padding">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-sm btn-warning" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-info" })
+    </p>
+</div>

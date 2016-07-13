@@ -3,26 +3,23 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
+<div class="content-wrapper">
+    <h1><span class="label label-success">My ToDo List - Create</span></h1>
+    <p class="padding"></p>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>toDo</legend>
-
+    <fieldset><legend></legend>
         <div class="editor-label">
-            @Html.LabelFor(model => model.priorityTypeId, "priorityType")
-        </div>
-        <div class="editor-field">
+            @Html.LabelFor(model => model.priorityTypeId, "PriorityType")
+        
             @Html.DropDownList("priorityTypeId", String.Empty)
             @Html.ValidationMessageFor(model => model.priorityTypeId)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.remindMeDate)
+            @Html.Label("RemindMeDate (12/12/9999)")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.remindMeDate)
@@ -37,16 +34,17 @@
             @Html.ValidationMessageFor(model => model.toDoDesc)
         </div>
 
-        <p>
-            <input type="submit" value="Create" />
+        <p class="padding">
+            <input type="submit" value="Create" class="btn btn-sm btn-success"/>
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+   @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-info" })
 </div>
 
 @*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }*@
+</div>

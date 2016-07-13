@@ -1,24 +1,36 @@
-﻿@using Auction.Web.Utility
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <title>@ViewBag.Title - My ASP.NET MVC Len</title>
     @RenderSection("meta", required: false)
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/Content/themes/default/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
     @Html.Partial("_html5shiv")
+    <style>
+        p.padding {
+            padding-top: 1cm;
+        }
+    </style>
 </head>
-<body>
-   
-    @RenderSection("featured", required: false)
-    <div class="container">
-        @RenderBody()
-        <hr />
-        <div class="footer">
-            <p>&copy; Company 2013</p>
-        </div>
+<body role="document">
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
     </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year  Swiss Mountain Puppy</p>
+            </div>
+        </div>
+    </footer>
 
 
     @*@Scripts.Render("~/bundles/jquery")

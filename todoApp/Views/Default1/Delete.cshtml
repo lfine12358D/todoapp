@@ -3,38 +3,37 @@
 @{
     ViewBag.Title = "Delete";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<div class="content-wrapper">
+<h1><span class="label label-danger">My ToDo List - Delete</span></h1>
+    <p class="padding"></p>
 <fieldset>
-    <legend>toDo</legend>
+    <legend></legend>
+    <div class="display-label">
+         @Html.DisplayName("Priority"): @Html.DisplayFor(model => model.priorityType.PriorityType1)
+    </div>
+   
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.priorityType.PriorityType1)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.priorityType.PriorityType1)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.remindMeDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.remindMeDate)
+        @Html.DisplayFor(model => model.remindMeDate):
+         @Html.DisplayNameFor(model => model.remindMeDate) 
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.toDoDesc)
+         @Html.DisplayNameFor(model => model.toDoDesc): @Html.DisplayFor(model => model.toDoDesc)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.toDoDesc)
-    </div>
+    
 </fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+    <p class="padding">
+        <input type="submit"  value="Delete" class="btn btn-sm btn-danger"/> |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-info" })
+
     </p>
 }
+    </div>
+<!-- set up the modal to start hidden and fade in and out -->
+
+
+</script>

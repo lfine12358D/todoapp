@@ -3,28 +3,27 @@
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
+<div class="content-wrapper">
+    <h1><span class="label label-warning">My ToDo List - Edit</span></h1>
+    <p class="padding"></p>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>toDo</legend>
-
+    <fieldset><legend></legend>
         @Html.HiddenFor(model => model.id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.priorityTypeId, "priorityType")
+            @Html.LabelFor(model => model.priorityTypeId, "Priority")
         </div>
-        <div class="editor-field">
+        <div class="dropdown theme-dropdown">
             @Html.DropDownList("priorityTypeId", String.Empty)
             @Html.ValidationMessageFor(model => model.priorityTypeId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.remindMeDate)
+            @Html.Label("RemindMe Date (12/12/1999) ")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.remindMeDate)
@@ -35,20 +34,21 @@
             @Html.LabelFor(model => model.toDoDesc)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.toDoDesc)
+            @Html.TextAreaFor(model => model.toDoDesc, new {@cols="40" })
             @Html.ValidationMessageFor(model => model.toDoDesc)
         </div>
 
-        <p>
-            <input type="submit" value="Save" />
+        <p class="padding">
+            <input type="submit" value="Save" class="btn btn-sm btn-warning"/>
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-info" })
 </div>
 
 @*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }*@
+    </div>

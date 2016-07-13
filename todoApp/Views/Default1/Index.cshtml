@@ -1,45 +1,44 @@
 ﻿@model IEnumerable<todoApp.Models.toDo>
-
 @{
     ViewBag.Title = "Index";
 }
+<div class="content-wrapper">
+    <h1><span class="label label-primary">My ToDo List</span>
+        @Html.ActionLink("Add A ToDo", "Create", null, new { @class = "btn btn-sm btn-success" }) </h1>
 
-<h2>Index</h2>
+    <p class="padding"></p>
+    @if (Model.ToList().Count > 0)
+    {
+    
+        <table class="table">
+            <tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.priorityType.PriorityType1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.remindMeDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.toDoDesc)
-        </th>
-        <th></th>
-    </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.remindMeDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.toDoDesc)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.priorityType.PriorityType1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.remindMeDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.toDoDesc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.remindMeDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.toDoDesc) (@Html.DisplayFor(modelItem => item.priorityType.PriorityType1))
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-sm btn-warning" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-sm btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    }
+</div>
